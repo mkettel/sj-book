@@ -6,7 +6,7 @@
 #root {
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(#888888, #ffffff 80%);
+  background: radial-gradient(#888888, #bababa 80%);
 }
 
 body {
@@ -16,3 +16,9 @@ body {
 .outline-text {
   -webkit-text-stroke: 1px white;
 }
+
+/*  
+font-family: 'Zodiak', serif;
+font-family: 'Bonny', serif;
+font-family: 'Rosaline', cursive;
+*/

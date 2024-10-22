@@ -1,4 +1,3 @@
-# MAGIC BOOK
 
 *All credit to Wawa Sensei for the tutorial and getting this project going.*
 

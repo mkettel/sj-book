@@ -1,6 +1,7 @@
 import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Book } from "./Book";
 import { Disco } from "./Disco";
+import { CandleHolder } from "./Candle-holder";
 
 export const Experience = () => {
   return (
@@ -22,9 +23,9 @@ export const Experience = () => {
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
         shadow-bias={-0.0001}
-        
       />
-      <Disco position={[0.0, 1.55, -0.3]} />
+      <Disco position={[2.4, 1.5, -0.9]} />
+      <CandleHolder position={[-2.9, -1.5, -1.3]} />
       <mesh position-y={-1.5} rotation-x={-Math.PI / 2} receiveShadow>
         <planeGeometry args={[100, 100]} />
         <shadowMaterial transparent opacity={0.2} />

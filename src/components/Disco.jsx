@@ -6,18 +6,33 @@ Source: https://sketchfab.com/3d-models/disco-ball-e4c3b485680843c7a7a827d04ac28
 Title: Disco Ball
 */
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import { Vector3 } from 'three'
 
 export function Disco(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/3d-model/disco-ball.glb')
   const { actions } = useAnimations(animations, group)
 
+  const startPosition = new Vector3(props.position[0], props.position[1] + 3.5, props.position[2])
+  const endPosition = new Vector3().fromArray(props.position)
+  const lerpFactor = 0.02
+
+  useEffect(() => {
+    if (group.current) {
+      group.current.position.copy(startPosition)
+    }
+  }, [])
+
   useFrame((state, delta) => {
     if (group.current) {
-        group.current.rotation.y += delta * 0.3
+      // Lerp the position
+      group.current.position.lerp(endPosition, lerpFactor)
+      
+      // Rotate the disco ball
+      group.current.rotation.y += delta * 0.3
     }
   })
 
@@ -53,4 +68,4 @@ export function Disco(props) {
   )
 }
 
-useGLTF.preload('/Disco Ball 3D Model.glb')
+useGLTF.preload('/3d-model/disco-ball.glb')

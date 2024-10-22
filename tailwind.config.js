@@ -4,6 +4,9 @@ export default {
   theme: {
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
+      zodiak: ["Zodiak", "serif"],
+      bonny: ["Bonny", "serif"],
+      rosaline: ["Rosaline", "cursive"],
     },
     extend: {
       fontSize: {

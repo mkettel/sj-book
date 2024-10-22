@@ -63,7 +63,7 @@ export const UI = () => {
             {[...pages].map((_, index) => (
               <button
                 key={index}
-                className={`border-transparent transition-all duration-300  text-md uppercase shrink-0 border ${
+                className={`border-transparent font-bonny transition-all duration-300  text-xl uppercase shrink-0 border ${
                   index === page
                     ? "border-b-2 border-b-black"
                     : ""
@@ -74,7 +74,7 @@ export const UI = () => {
               </button>
             ))}
             <button
-              className={`border-transparent transition-all duration-300 text-md uppercase shrink-0 border ${
+              className={`border-transparent font-bonny transition-all duration-300 text-xl uppercase shrink-0 border ${
                 page === pages.length
                   ? "border-b-2 border-b-black"
                   : ""
