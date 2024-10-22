@@ -311,16 +311,31 @@ export const Book = ({...props}) => {
                 -1.5,
                 0.03
             )
+            book.current.position.y = MathUtils.lerp(
+                book.current.position.y,
+                -0.27,
+                0.03
+            )
         } else if (isBookClosedBack) {
             book.current.position.x = MathUtils.lerp(
                 book.current.position.x,
                 1.5,
                 0.03
             )
+            book.current.position.y = MathUtils.lerp(
+                book.current.position.y,
+                -0.36,
+                0.03
+            )
         } else {
             book.current.position.x = MathUtils.lerp(
                 book.current.position.x,
                 0,
+                0.03
+            )
+            book.current.position.y = MathUtils.lerp(
+                book.current.position.y,
+                -0.4,
                 0.03
             )
         }
@@ -334,7 +349,7 @@ export const Book = ({...props}) => {
 
 
     return (
-        <group ref={book} {...props} rotation-y={-Math.PI / 2.0} rotation-x={0.30}
+        <group ref={book} {...props} rotation-y={-Math.PI / 2.0} rotation-x={0.30} 
             
         >
             {

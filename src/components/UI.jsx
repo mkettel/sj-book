@@ -2,12 +2,12 @@ import { atom, useAtom } from "jotai"; // atom is a state management library
 import { useEffect } from "react";
 
 const pictures = [
+  "apartment-wall",
+  "apartment-good-light",
   "speak-no-label",
   "fall-guy-slide",
   "gabby-slide-new",
   "kfp-slide",
-  // "apartment-wall",
-  // "apartment-good-light",
   // "sam-roof",
   // "film-costa-sunset",
   // "good-vibes",
@@ -56,17 +56,17 @@ export const UI = () => {
           className="pointer-events-auto mt-10 ml-10"
           href="https://www.pxlagency.com/"
         >
-          <img className="w-20" src="/images/Logo_PXL.png" />
+          <img className="w-36" src="/images/sam-and-jack.png" />
         </a>
         <div className="w-full overflow-auto pointer-events-auto flex justify-center">
-          <div className="overflow-auto flex items-center gap-4 max-w-full p-10">
+          <div className="overflow-auto flex items-center gap-4 max-w-full p-8">
             {[...pages].map((_, index) => (
               <button
                 key={index}
-                className={`border-transparent hover:border-white transition-all duration-300  px-4 py-3 rounded-lg  text-lg uppercase shrink-0 border ${
+                className={`border-transparent transition-all duration-300  text-md uppercase shrink-0 border ${
                   index === page
-                    ? "bg-white/90 text-black"
-                    : "bg-black/30 text-white"
+                    ? "border-b-2 border-b-black"
+                    : ""
                 }`}
                 onClick={() => setPage(index)}
               >
@@ -74,10 +74,10 @@ export const UI = () => {
               </button>
             ))}
             <button
-              className={`border-transparent hover:border-white transition-all duration-300  px-4 py-3 rounded-lg  text-lg uppercase shrink-0 border ${
+              className={`border-transparent transition-all duration-300 text-md uppercase shrink-0 border ${
                 page === pages.length
-                  ? "bg-white/90 text-black"
-                  : "bg-black/30 text-white"
+                  ? "border-b-2 border-b-black"
+                  : ""
               }`}
               onClick={() => setPage(pages.length)}
             >
