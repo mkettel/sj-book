@@ -7,6 +7,7 @@ export default {
       zodiak: ["Zodiak", "serif"],
       bonny: ["Bonny", "serif"],
       rosaline: ["Rosaline", "cursive"],
+      tangerineReg: ["Tangerine", "cursive"]
     },
     extend: {
       fontSize: {

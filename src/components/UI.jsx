@@ -1,31 +1,19 @@
 import { atom, useAtom } from "jotai"; // atom is a state management library
 import { useEffect } from "react";
+import { GiCrownedHeart } from "react-icons/gi";
+import YouTubeMusicPlayer from "./YoutubeMusicPlayer";
+
 
 const pictures = [
-  "apartment-wall",
-  "apartment-good-light",
-  "speak-no-label",
-  "fall-guy-slide",
-  "gabby-slide-new",
-  "kfp-slide",
-  // "sam-roof",
-  // "film-costa-sunset",
-  // "good-vibes",
-  // "Gator",
-  // "costa-rican-sunset",
-  // "Cornice-2",
-  // "drive-view",
-  // "Stream-Trees",
-  // "dino-bali",
-  // "nusa-water",
-  // "joey-pup",
+  "jack-test",
+  "sj-peace",
 ];
 // 
 
 export const pageAtom = atom(0);
 export const pages = [
   {
-    front: "pxl-cover-2", // the cover of the book
+    front: "sj-cover", // the cover of the book
     back: pictures[0], // the first page of the book
   },
 ];
@@ -53,19 +41,19 @@ export const UI = () => {
     <>
       <main className=" pointer-events-none select-none z-10 fixed  inset-0  flex justify-between flex-col">
         <a
-          className="pointer-events-auto mt-10 ml-10"
+          className="pointer-events-auto flex gap-4 items-center mt-10 ml-10"
           href="https://www.pxlagency.com/"
         >
-          <img className="w-36" src="/images/sam-and-jack.png" />
+          <img className="w-36" src="/images/sj-title.png" /> <span className="scale-[1.5] mb-[7px]"><GiCrownedHeart color="black" /></span>
         </a>
         <div className="w-full overflow-auto pointer-events-auto flex justify-center">
           <div className="overflow-auto flex items-center gap-4 max-w-full p-8">
             {[...pages].map((_, index) => (
               <button
                 key={index}
-                className={`border-transparent font-bonny transition-all duration-300  text-xl uppercase shrink-0 border ${
+                className={`border-transparent font-tangerineReg text-white transition-all duration-300  text-xl uppercase shrink-0 border ${
                   index === page
-                    ? "border-b-2 border-b-black"
+                    ? "border-b-2 border-b-red-600"
                     : ""
                 }`}
                 onClick={() => setPage(index)}
@@ -74,9 +62,9 @@ export const UI = () => {
               </button>
             ))}
             <button
-              className={`border-transparent font-bonny transition-all duration-300 text-xl uppercase shrink-0 border ${
+              className={`border-transparent font-tangerineReg text-white transition-all duration-300 text-xl uppercase shrink-0 border ${
                 page === pages.length
-                  ? "border-b-2 border-b-black"
+                  ? "border-b-2 border-b-red-600"
                   : ""
               }`}
               onClick={() => setPage(pages.length)}
@@ -84,6 +72,7 @@ export const UI = () => {
               Back Cover
             </button>
           </div>
+          <YouTubeMusicPlayer />
         </div>
       </main>
 

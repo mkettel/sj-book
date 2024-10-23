@@ -14,8 +14,8 @@ const insideCurveStrength = 0.18;
 const outsideCurveStrength = 0.05;
 const turningCurveStrength = 0.09;
 
-const PAGE_WIDTH = 1.78;
-const PAGE_HEIGHT = 1.39;
+const PAGE_WIDTH = 1.88;
+const PAGE_HEIGHT = 1.32;
 const PAGE_DEPTH = 0.003;
 const PAGE_SEGMENTS = 30;
 const SEGMENT_WIDTH = PAGE_WIDTH / PAGE_SEGMENTS 
@@ -60,7 +60,7 @@ pageGeometry.setAttribute(
 )
 
 const whiteColor = new Color('white')
-const emmisiveColor = new Color('white')
+const emmisiveColor = new Color('#f74a4a')
 
 const pageMaterials = [
     
@@ -82,14 +82,14 @@ const pageMaterials = [
 pages.forEach((page) => {
     useTexture.preload(`/textures/${page.front}.jpg`)
     useTexture.preload(`/textures/${page.back}.jpg`)
-    useTexture.preload(`/textures/pxl-rough.jpg`)
+    useTexture.preload(`/textures/s-rough.jpg`)
 })
 
 const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     const [picture, picture2, pictureRoughness] = useTexture([
         `/textures/${front}.jpg`,
         `/textures/${back}.jpg`,
-        ...(number === 0 || number === pages.length -1 ? [`/textures/pxl-rough.jpg`] : [])
+        ...(number === 0 || number === pages.length -1 ? [`/textures/s-rough.jpg`] : [])
     ])
     picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
 
@@ -180,7 +180,7 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
         skinnedMeshRef.current.material[4].emissiveIntensity = skinnedMeshRef.current.material[5].emissiveIntensity = MathUtils.lerp(
             skinnedMeshRef.current.material[4].emissiveIntensity,
             emissiveIntensity,
-            0.1
+            0.07
         )
 
         /**
@@ -308,7 +308,7 @@ export const Book = ({...props}) => {
         if (isBookClosed) {
             book.current.position.x = MathUtils.lerp(
                 book.current.position.x,
-                -1.5,
+                -1.6,
                 0.03
             )
             book.current.position.y = MathUtils.lerp(
@@ -319,7 +319,7 @@ export const Book = ({...props}) => {
         } else if (isBookClosedBack) {
             book.current.position.x = MathUtils.lerp(
                 book.current.position.x,
-                1.5,
+                1.6,
                 0.03
             )
             book.current.position.y = MathUtils.lerp(

@@ -18,7 +18,7 @@ export function Disco(props) {
 
   const startPosition = new Vector3(props.position[0], props.position[1] + 3.5, props.position[2])
   const endPosition = new Vector3().fromArray(props.position)
-  const lerpFactor = 0.02
+  const lerpFactor = 0.012
 
   useEffect(() => {
     if (group.current) {

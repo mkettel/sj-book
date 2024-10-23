@@ -6,7 +6,7 @@
 #root {
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(#888888, #bababa 80%);
+  background: radial-gradient(#888888, #000000 85%);
 }
 
 body {
@@ -22,3 +22,15 @@ font-family: 'Zodiak', serif;
 font-family: 'Bonny', serif;
 font-family: 'Rosaline', cursive;
 */
+
+.tangerine-regular {
+  font-family: "Tangerine", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tangerine-bold {
+  font-family: "Tangerine", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
