@@ -14,7 +14,17 @@ const pictures = [
   "buff-munch.png",
   "renni-dragon.png",
   "sj-peace.jpg",
-
+  "dance.png",
+  "moe-buff.png",
+  "matt-shaka.png",
+  "mom-mask.png",
+  "zari-dance.png",
+  "peep-dance.png",
+  "renni-maddy.png",
+  "dude-rug.png",
+  "gorl-mask.png",
+  "baby.png",
+  
 ];
 // 
 
