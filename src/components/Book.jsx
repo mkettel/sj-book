@@ -80,16 +80,16 @@ const pageMaterials = [
 
 // Loader for the textures of the pages
 pages.forEach((page) => {
-    useTexture.preload(`/textures/${page.front}.jpg`)
-    useTexture.preload(`/textures/${page.back}.jpg`)
-    useTexture.preload(`/textures/s-rough.jpg`)
+    useTexture.preload(`/textures/${page.front}`)
+    useTexture.preload(`/textures/${page.back}`)
+    useTexture.preload(`/textures/sj-rough-new.jpg`)
 })
 
 const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     const [picture, picture2, pictureRoughness] = useTexture([
-        `/textures/${front}.jpg`,
-        `/textures/${back}.jpg`,
-        ...(number === 0 || number === pages.length -1 ? [`/textures/s-rough.jpg`] : [])
+        `/textures/${front}`,
+        `/textures/${back}`,
+        ...(number === 0 || number === pages.length -1 ? [`/textures/sj-rough-new.jpg`] : [])
     ])
     picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
 
@@ -268,12 +268,58 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     )
 }
 
+// Screen breakpoints
+const BREAKPOINTS = {
+    mobile: 480,
+    tablet: 768,
+    desktop: 1024
+  }
+  
+  // Scale factors for different screen sizes
+  const SCALE_FACTORS = {
+    mobile: 0.8,
+    tablet: 1.2,
+    desktop: 1.5
+  }
+  
+  // Custom hook to handle screen size detection
+  const useScreenSize = () => {
+    const [screenSize, setScreenSize] = useState({
+      width: typeof window !== 'undefined' ? window.innerWidth : 0,
+      height: typeof window !== 'undefined' ? window.innerHeight : 0
+    })
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setScreenSize({
+          width: window.innerWidth,
+          height: window.innerHeight
+        })
+      }
+  
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }, [])
+  
+    const getDeviceType = () => {
+      if (screenSize.width <= BREAKPOINTS.mobile) return 'mobile'
+      if (screenSize.width <= BREAKPOINTS.tablet) return 'tablet'
+      return 'desktop'
+    }
+  
+    return {
+      screenSize,
+      deviceType: getDeviceType()
+    }
+  }
+
 
 
 export const Book = ({...props}) => {
     const [page] = useAtom(pageAtom)
     const  [delayedPage, setDelayedPage] = useState(page)
     const book = useRef()
+    const { deviceType } = useScreenSize()
 
     useEffect(() => {
         let timeout;
@@ -304,16 +350,24 @@ export const Book = ({...props}) => {
         const isBookClosed = page === 0
         const isBookClosedBack = page === pages.length
 
+        // Get base scale based on device type
+        const baseScale = SCALE_FACTORS[deviceType]
+
+        // Position adjustments based on device type
+        const xPositionClosed = deviceType === 'mobile' ? -1.2 : -1.6
+        const xPositionClosedBack = deviceType === 'mobile' ? 1.2 : 1.6
+        const yPositionDefault = deviceType === 'mobile' ? -0.27 : -0.27
+
         // Lerp the x position
         if (isBookClosed) {
             book.current.position.x = MathUtils.lerp(
                 book.current.position.x,
-                -1.6,
+                xPositionClosed,
                 0.03
             )
             book.current.position.y = MathUtils.lerp(
                 book.current.position.y,
-                -0.27,
+                yPositionDefault,
                 0.03
             )
         } else if (isBookClosedBack) {
@@ -341,7 +395,7 @@ export const Book = ({...props}) => {
         }
 
         // Lerp the scale
-        const targetScale = isBookClosed ? 1.8 : 1.5
+        const targetScale = isBookClosed ? baseScale * 1.2 : baseScale
         book.current.scale.x = MathUtils.lerp(book.current.scale.x, targetScale, 0.02)
         book.current.scale.y = MathUtils.lerp(book.current.scale.y, targetScale, 0.02)
         book.current.scale.z = MathUtils.lerp(book.current.scale.z, targetScale, 0.02)

@@ -6,6 +6,11 @@ import * as THREE from "three";
 import { useRef } from 'react';
 import { useFrame } from "@react-three/fiber";
 
+const BREAKPOINTS = {
+  mobile: 480,
+  tablet: 768
+}
+
 const Flame = ({ position }) => {
   const flameRef = useRef();
   

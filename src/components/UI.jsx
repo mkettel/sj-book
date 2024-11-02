@@ -5,15 +5,23 @@ import YouTubeMusicPlayer from "./YoutubeMusicPlayer";
 
 
 const pictures = [
-  "jack-test",
-  "sj-peace",
+  "jack-test.jpg",
+  "post-marry-walk.png",
+  "dancing-people.png",
+  "buff-sj-walk.png",
+  "j-gramps.png",
+  "s-dad-walk.png",
+  "buff-munch.png",
+  "renni-dragon.png",
+  "sj-peace.jpg",
+
 ];
 // 
 
 export const pageAtom = atom(0);
 export const pages = [
   {
-    front: "sj-cover", // the cover of the book
+    front: "sj-cover.jpg", // the cover of the book
     back: pictures[0], // the first page of the book
   },
 ];
@@ -26,7 +34,7 @@ for (let i = 1; i < pictures.length - 1; i += 2) {
 
 pages.push({
   front: pictures[pictures.length - 1],
-  back: "pxl-back",
+  back: "pxl-back.jpg",
 });
 
 export const UI = () => {
