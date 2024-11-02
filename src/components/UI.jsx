@@ -24,9 +24,14 @@ const pictures = [
   "dude-rug.png",
   "gorl-mask.png",
   "baby.png",
-  
+  "bar-energy.png",
+  "crazy-girls.png",
+  "dude-bar.png",
+  "j-dad.png",
+  "mark-brad.png",
+  "mom-renni-mask.png",
+
 ];
-// 
 
 export const pageAtom = atom(0);
 export const pages = [
