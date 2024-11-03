@@ -5,7 +5,6 @@ import YouTubeMusicPlayer from "./YoutubeMusicPlayer";
 
 
 const pictures = [
-  "jack-test.jpg",
   "post-marry-walk.png",
   "dancing-people.png",
   "buff-sj-walk.png",
@@ -13,7 +12,6 @@ const pictures = [
   "s-dad-walk.png",
   "buff-munch.png",
   "renni-dragon.png",
-  "sj-peace.jpg",
   "dance.png",
   "moe-buff.png",
   "matt-shaka.png",
@@ -35,6 +33,8 @@ const pictures = [
   "weddin-vibes.png",
   "moe-brad.png",
   "kbs.png",
+  "jack-test.jpg",
+  "sj-peace.jpg",
 ];
 
 export const pageAtom = atom(0);

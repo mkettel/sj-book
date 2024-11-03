@@ -291,7 +291,7 @@ const BREAKPOINTS = {
           y: -0.3
         },
         backCover: {
-          x: 1.0,
+          x: 0.5,
           y: -0.26
         }
       },
@@ -323,7 +323,7 @@ const BREAKPOINTS = {
       }
     },
     desktop: {
-      scale: 1.5,
+      scale: 1.4,
       scaleWhenClosed: 1.8, // 1.5 * 1.2
       positions: {
         closed: {
