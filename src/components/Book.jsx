@@ -269,17 +269,81 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
 }
 
 // Screen breakpoints
+// First, let's expand the breakpoint configurations
 const BREAKPOINTS = {
     mobile: 480,
     tablet: 768,
     desktop: 1024
   }
   
-  // Scale factors for different screen sizes
-  const SCALE_FACTORS = {
-    mobile: 0.8,
-    tablet: 1.2,
-    desktop: 1.5
+  // Expanded configuration object for all responsive values
+  const RESPONSIVE_VALUES = {
+    mobile: {
+      scale: 0.4,
+      scaleWhenClosed: 0.7, // 0.8 * 1.2
+      positions: {
+        closed: {
+          x: -0.67,
+          y: -0.20
+        },
+        open: {
+          x: 0,
+          y: -0.3
+        },
+        backCover: {
+          x: 1.0,
+          y: -0.26
+        }
+      },
+      rotation: {
+        x: 0.25,
+        y: -Math.PI / 2.0
+      }
+    },
+    tablet: {
+      scale: 1.2,
+      scaleWhenClosed: 1.44, // 1.2 * 1.2
+      positions: {
+        closed: {
+          x: -1.3,
+          y: -0.23
+        },
+        open: {
+          x: 0,
+          y: -0.35
+        },
+        backCover: {
+          x: 1.3,
+          y: -0.31
+        }
+      },
+      rotation: {
+        x: 0.28,
+        y: -Math.PI / 2.0
+      }
+    },
+    desktop: {
+      scale: 1.5,
+      scaleWhenClosed: 1.8, // 1.5 * 1.2
+      positions: {
+        closed: {
+          x: -1.6,
+          y: -0.27
+        },
+        open: {
+          x: 0,
+          y: -0.4
+        },
+        backCover: {
+          x: 1.6,
+          y: -0.36
+        }
+      },
+      rotation: {
+        x: 0.30,
+        y: -Math.PI / 2.0
+      }
+    }
   }
   
   // Custom hook to handle screen size detection
@@ -315,109 +379,95 @@ const BREAKPOINTS = {
 
 
 
-export const Book = ({...props}) => {
+  export const Book = ({...props}) => {
     const [page] = useAtom(pageAtom)
-    const  [delayedPage, setDelayedPage] = useState(page)
+    const [delayedPage, setDelayedPage] = useState(page)
     const book = useRef()
     const { deviceType } = useScreenSize()
+
+    // Get the current responsive values based on device type
+    const currentValues = RESPONSIVE_VALUES[deviceType]
 
     useEffect(() => {
         let timeout;
         const goToPage = () => {
             setDelayedPage((delayedPage) => {
-
                 if (page === delayedPage) {
                     return delayedPage;
                 } else {
                     timeout = setTimeout(() => {
                         goToPage();
-                    }, Math.abs(page - delayedPage) > 2 ? 50 : 150) // if the difference between the page and the delayed page is greater than 2 then set the timeout to 50 else 150
+                    }, Math.abs(page - delayedPage) > 2 ? 50 : 150)
                 }
                 if (page > delayedPage) {
-                    return delayedPage + 1; 
+                    return delayedPage + 1;
                 }
-                if (page < delayedPage) { 
+                if (page < delayedPage) {
                     return delayedPage - 1;
                 }
             })
         }
-        goToPage(); 
-        return () => clearTimeout(timeout); 
+        goToPage();
+        return () => clearTimeout(timeout);
     }, [page])
 
-    // If the book is open set the position of the book to the left else set it to the right with lerp
     useFrame((_, delta) => {
         const isBookClosed = page === 0
         const isBookClosedBack = page === pages.length
 
-        // Get base scale based on device type
-        const baseScale = SCALE_FACTORS[deviceType]
+        // Get target position based on book state
+        let targetX, targetY;
+        let targetScale;
 
-        // Position adjustments based on device type
-        const xPositionClosed = deviceType === 'mobile' ? -1.2 : -1.6
-        const xPositionClosedBack = deviceType === 'mobile' ? 1.2 : 1.6
-        const yPositionDefault = deviceType === 'mobile' ? -0.27 : -0.27
-
-        // Lerp the x position
         if (isBookClosed) {
-            book.current.position.x = MathUtils.lerp(
-                book.current.position.x,
-                xPositionClosed,
-                0.03
-            )
-            book.current.position.y = MathUtils.lerp(
-                book.current.position.y,
-                yPositionDefault,
-                0.03
-            )
+            targetX = currentValues.positions.closed.x;
+            targetY = currentValues.positions.closed.y;
+            targetScale = currentValues.scaleWhenClosed;
         } else if (isBookClosedBack) {
-            book.current.position.x = MathUtils.lerp(
-                book.current.position.x,
-                1.6,
-                0.03
-            )
-            book.current.position.y = MathUtils.lerp(
-                book.current.position.y,
-                -0.36,
-                0.03
-            )
+            targetX = currentValues.positions.backCover.x;
+            targetY = currentValues.positions.backCover.y;
+            targetScale = currentValues.scale;
         } else {
-            book.current.position.x = MathUtils.lerp(
-                book.current.position.x,
-                0,
-                0.03
-            )
-            book.current.position.y = MathUtils.lerp(
-                book.current.position.y,
-                -0.4,
-                0.03
-            )
+            targetX = currentValues.positions.open.x;
+            targetY = currentValues.positions.open.y;
+            targetScale = currentValues.scale;
         }
 
-        // Lerp the scale
-        const targetScale = isBookClosed ? baseScale * 1.2 : baseScale
+        // Apply position lerping
+        book.current.position.x = MathUtils.lerp(
+            book.current.position.x,
+            targetX,
+            0.03
+        )
+        book.current.position.y = MathUtils.lerp(
+            book.current.position.y,
+            targetY,
+            0.03
+        )
+
+        // Apply scale lerping
         book.current.scale.x = MathUtils.lerp(book.current.scale.x, targetScale, 0.02)
         book.current.scale.y = MathUtils.lerp(book.current.scale.y, targetScale, 0.02)
         book.current.scale.z = MathUtils.lerp(book.current.scale.z, targetScale, 0.02)
     })
 
-
     return (
-        <group ref={book} {...props} rotation-y={-Math.PI / 2.0} rotation-x={0.30} 
-            
+        <group 
+            ref={book} 
+            {...props} 
+            rotation-y={currentValues.rotation.y} 
+            rotation-x={currentValues.rotation.x}
         >
-            {
-                [...pages].map((pageData, index) => (
-                    <Page 
-                        opened={delayedPage > index}
-                        key={index} 
-                        page={delayedPage}
-                        number={index} 
-                        bookClosed={delayedPage === 0 || delayedPage === pages.length} 
-                        {...pageData} 
-                        />
-                ))
-            }
+            {[...pages].map((pageData, index) => (
+                <Page 
+                    opened={delayedPage > index}
+                    key={index} 
+                    page={delayedPage}
+                    number={index} 
+                    bookClosed={delayedPage === 0 || delayedPage === pages.length} 
+                    {...pageData} 
+                />
+            ))}
         </group>
     )
 }
