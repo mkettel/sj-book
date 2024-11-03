@@ -1,5 +1,5 @@
 import { atom, useAtom } from "jotai"; // atom is a state management library
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GiCrownedHeart } from "react-icons/gi";
 import YouTubeMusicPlayer from "./YoutubeMusicPlayer";
 
@@ -24,13 +24,17 @@ const pictures = [
   "dude-rug.png",
   "gorl-mask.png",
   "baby.png",
-  "bar-energy.png",
+  "bar-enery.png",
   "crazy-girls.png",
   "dude-bar.png",
   "j-dad.png",
   "mark-brad.png",
   "mom-renni-mask.png",
-
+  "toast.png",
+  "zari-girl-cup.png",
+  "weddin-vibes.png",
+  "moe-brad.png",
+  "kbs.png",
 ];
 
 export const pageAtom = atom(0);
@@ -70,7 +74,7 @@ export const UI = () => {
           <img className="w-36" src="/images/sj-title.png" /> <span className="scale-[1.5] mb-[7px]"><GiCrownedHeart color="black" /></span>
         </a>
         <div className="w-full overflow-auto pointer-events-auto flex justify-center">
-          <div className="overflow-auto flex items-center gap-4 max-w-full p-8">
+          <div className="overflow-auto ml-[90px] flex items-center gap-4 max-w-full p-8">
             {[...pages].map((_, index) => (
               <button
                 key={index}
