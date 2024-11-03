@@ -66,9 +66,9 @@ export const UI = () => {
 
   return (
     <>
-      <main className=" pointer-events-none select-none z-10 fixed  inset-0  flex justify-between flex-col">
+      <main className=" pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
         <a
-          className="pointer-events-auto flex gap-4 items-center mt-10 ml-10"
+          className="pointer-events-auto flex gap-4 items-center w-full"
           href="https://www.pxlagency.com/"
         >
           <img className="w-36" src="/images/sj-title.png" /> <span className="scale-[1.5] mb-[7px]"><GiCrownedHeart color="black" /></span>

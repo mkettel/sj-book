@@ -271,7 +271,7 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
 // Screen breakpoints
 // First, let's expand the breakpoint configurations
 const BREAKPOINTS = {
-    mobile: 480,
+    mobile: 580,
     tablet: 768,
     desktop: 1024
   }
