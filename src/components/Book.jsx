@@ -279,11 +279,11 @@ const BREAKPOINTS = {
   // Expanded configuration object for all responsive values
   const RESPONSIVE_VALUES = {
     mobile: {
-      scale: 0.5,
-      scaleWhenClosed: 0.77, // 0.8 * 1.2
+      scale: 0.55,
+      scaleWhenClosed: 0.84, // 0.8 * 1.2
       positions: {
         closed: {
-          x: -0.72,
+          x: -0.79,
           y: -0.20
         },
         open: {
