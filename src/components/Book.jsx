@@ -89,7 +89,9 @@ const Page = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     const [picture, picture2, pictureRoughness] = useTexture([
         `/textures/${front}`,
         `/textures/${back}`,
-        ...(number === 0 || number === pages.length -1 ? [`/textures/sj-rough-new.jpg`] : [])
+        ...(number === 0 ? [`/textures/sj-rough-new.jpg`] : []),  // front cover roughness
+        ...(number === pages.length - 1 ? [`/textures/sj-roughness-back.jpg`] : []) 
+        
     ])
     picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
 

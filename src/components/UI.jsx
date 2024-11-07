@@ -74,7 +74,7 @@ for (let i = 1; i < pictures.length - 1; i += 2) {
 
 pages.push({
   front: pictures[pictures.length - 1],
-  back: "sj-cover.jpg",
+  back: "sj-back-cover.jpg",
 });
 
 const UI = () => {
