@@ -53,10 +53,10 @@ for (let i = 1; i < pictures.length - 1; i += 2) {
 
 pages.push({
   front: pictures[pictures.length - 1],
-  back: "pxl-back.jpg",
+  back: "sj-cover.jpg",
 });
 
-export const UI = () => {
+const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export const UI = () => {
       <main className=" pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
         <a
           className="pointer-events-auto flex gap-4 items-center w-full"
-          href="https://www.pxlagency.com/"
+          href="https://www.mattkettelkamp.com/"
         >
           <img className="w-36" src="/images/sj-title.png" /> <span className="scale-[1.5] mb-[7px]"><GiCrownedHeart color="black" /></span>
         </a>
@@ -156,3 +156,5 @@ export const UI = () => {
     </>
   );
 };
+
+export default UI;

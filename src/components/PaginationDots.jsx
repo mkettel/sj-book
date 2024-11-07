@@ -2,6 +2,7 @@ import React from 'react';
 import { useAtom } from 'jotai';
 import { GiCrownedHeart } from 'react-icons/gi';
 import { pageAtom, pages } from './UI';
+import YouTubeMusicPlayer from './YoutubeMusicPlayer';
 
 const PaginationDots = () => {
   const [page, setPage] = useAtom(pageAtom);
@@ -26,13 +27,16 @@ const PaginationDots = () => {
     <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
       <a
         className="pointer-events-auto flex gap-4 items-center justify-center md:justify-start mt-16 md:mt-10 md:ml-10"
-        href="https://www.pxlagency.com/"
+        href="https://www.mattkettelkamp.com/"
       >
         <img className="w-40 md:w-36" src="/images/sj-title.png" alt="PXL Agency" />
         <span className="scale-[1.5] mb-[5px] md:mb-[7px]">
           <GiCrownedHeart color="black" />
         </span>
       </a>
+    <div className="pointer-events-auto z-10 md:mr-10">
+        <YouTubeMusicPlayer />
+    </div>
       <div className="w-full pointer-events-auto flex justify-center mb-8">
         <div className="flex items-center gap-4">
           {getVisibleDots().map((index, i) => {
