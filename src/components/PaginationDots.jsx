@@ -3,6 +3,7 @@ import { useAtom } from 'jotai';
 import { GiCrownedHeart } from 'react-icons/gi';
 import { pageAtom, pages } from './UI';
 import YouTubeMusicPlayer from './YoutubeMusicPlayer';
+import { motion } from 'framer-motion';
 
 const PaginationDots = () => {
   const [page, setPage] = useAtom(pageAtom);
@@ -25,7 +26,10 @@ const PaginationDots = () => {
 
   return (
     <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
-      <a
+      <motion.a
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.9 }}
         className="pointer-events-auto flex gap-4 items-center justify-center md:justify-start mt-20 md:mt-10 md:ml-10"
         href="https://www.youtube.com/watch?v=kG9CJvMI8wg" 
         target='_blank'
@@ -34,7 +38,7 @@ const PaginationDots = () => {
         <span className="scale-[1.5] mb-[5px] md:mb-[7px]">
           <GiCrownedHeart color="black" />
         </span>
-      </a>
+      </motion.a>
     <div className="pointer-events-auto z-10 md:mr-10">
         <YouTubeMusicPlayer />
     </div>
