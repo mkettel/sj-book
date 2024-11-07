@@ -31,6 +31,21 @@ const RESPONSIVE_POSITIONS = {
   }
 };
 
+const CAMERA_CONTROLS = {
+  mobile: {
+    minDistance: 2.0,
+    maxDistance: 4.5,
+  },
+  tablet: {
+    minDistance: 3.5,
+    maxDistance: 4.5,
+  },
+  desktop: {
+    minDistance: 3.5,
+    maxDistance: 4.5,
+  }
+};
+
 // Custom hook to handle screen size detection
 const useScreenSize = () => {
   const [screenSize, setScreenSize] = useState({
@@ -91,6 +106,7 @@ export const Experience = () => {
   const backgroundColor = new THREE.Color("#87CEEB");
   const { deviceType } = useScreenSize();
   const positions = RESPONSIVE_POSITIONS[deviceType];
+  const cameraControls = CAMERA_CONTROLS[deviceType];
   
   const discoRef = useRef();
   const candleRef = useRef();
@@ -117,7 +133,7 @@ export const Experience = () => {
         <Book />
       </Float>
       <OrbitControls 
-        minDistance={4.0} 
+        minDistance={cameraControls.minDistance} 
         maxDistance={4.5} 
         minAzimuthAngle={-0.3} 
         maxAzimuthAngle={0.3} 
