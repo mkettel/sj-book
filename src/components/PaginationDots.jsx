@@ -26,10 +26,11 @@ const PaginationDots = () => {
   return (
     <main className="pointer-events-none select-none z-10 fixed inset-0 flex justify-between flex-col">
       <a
-        className="pointer-events-auto flex gap-4 items-center justify-center md:justify-start mt-16 md:mt-10 md:ml-10"
-        href="https://www.mattkettelkamp.com/"
+        className="pointer-events-auto flex gap-4 items-center justify-center md:justify-start mt-20 md:mt-10 md:ml-10"
+        href="https://www.youtube.com/watch?v=kG9CJvMI8wg" 
+        target='_blank'
       >
-        <img className="w-40 md:w-36" src="/images/sj-title.png" alt="PXL Agency" />
+        <img className="w-40 md:w-36" src="/images/sj-title.png" alt="Love Birds" />
         <span className="scale-[1.5] mb-[5px] md:mb-[7px]">
           <GiCrownedHeart color="black" />
         </span>

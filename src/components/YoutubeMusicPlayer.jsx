@@ -102,7 +102,7 @@ const YouTubeMusicPlayer = ({ videoId = 'lVCqH2kl9fI' }) => {
   return (
     <>
       <div id="youtube-player" className="hidden" />
-      <div className="fixed md:bottom-4 top-4 z-20 left-4 bg-black/0  rounded-lg p-3 text-white flex items-center gap-3">
+      <div className="fixed md:bottom-4 top-2 z-20 md:left-4 left-2 bg-black/0  rounded-lg p-3 text-white flex items-center gap-3">
         <motion.button
           onClick={togglePlay}
           className=""
