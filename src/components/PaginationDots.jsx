@@ -66,7 +66,7 @@ const PaginationDots = () => {
                 } transition-all duration-300`}
               >
                 <div
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     isCurrent
                       ? 'bg-red-600'
                       : 'bg-white/50 group-hover:bg-white/80'

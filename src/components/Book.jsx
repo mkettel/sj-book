@@ -74,7 +74,7 @@ const pageMaterials = [
         color: "pink",
     }),
     new MeshStandardMaterial({
-        color: "blue",
+        color: "black",
     }),
 ]
 

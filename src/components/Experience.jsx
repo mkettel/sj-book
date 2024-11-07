@@ -117,7 +117,7 @@ export const Experience = () => {
         <Book />
       </Float>
       <OrbitControls 
-        minDistance={4.5} 
+        minDistance={4.0} 
         maxDistance={4.5} 
         minAzimuthAngle={-0.3} 
         maxAzimuthAngle={0.3} 
