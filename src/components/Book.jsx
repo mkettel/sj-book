@@ -347,6 +347,7 @@ const BREAKPOINTS = {
       }
     }
   }
+//   meow
   
   // Custom hook to handle screen size detection
   const useScreenSize = () => {
